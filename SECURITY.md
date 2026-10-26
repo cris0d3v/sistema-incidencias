@@ -2,20 +2,21 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+This project is currently in active development (MVP stage). Security updates are only provided for the latest version.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 0.1.x   | :white_check_mark: |
+| < 0.1   | :x:                |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+**Please do not report security vulnerabilities through public GitHub issues.**
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+If you discover a security vulnerability, please report it privately. You can do so by using the **"Report a vulnerability"** button in the **Security** tab of this repository, or by contacting the maintainer directly.
+
+You can expect the following timeline:
+
+- **Acknowledgment:** Within 48 hours of your report.
+- **Updates:** I will keep you informed about the progress of the fix, typically every 3-5 days.
+- **Resolution:** If the vulnerability is accepted, a patch will be released as soon as possible, and you will be credited for the discovery (if you wish). If the report is declined, I will provide a clear explanation of why.
