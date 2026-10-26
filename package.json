@@ -1,0 +1,30 @@
+{
+  "name": "sistema-incidencias",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Incident management system to track and resolve issues. Monorepo with NestJS and React.",
+  "author": "cris0d3v",
+  "license": "MIT",
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "dev:api": "pnpm --filter serve-api start:dev",
+    "dev:web": "pnpm --filter client_view dev",
+    "build:api": "pnpm --filter serve-api build",
+    "build:web": "pnpm --filter client_view build"
+  },
+  "keywords": [
+    "incident-management",
+    "nestjs",
+    "react",
+    "monorepo",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cris0d3v/sistema-incidencias.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cris0d3v/sistema-incidencias/issues"
+  },
+  "homepage": "https://github.com/cris0d3v/sistema-incidencias#readme"
+}
