@@ -1,0 +1,35 @@
+# syntax=docker/dockerfile:1
+
+FROM node:24-alpine AS base
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable
+WORKDIR /app
+
+# ---- deps: install workspace dependencies in frozen mode ----
+FROM base AS deps
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/serve-api/package.json apps/serve-api/
+RUN pnpm install --frozen-lockfile --filter serve-api...
+
+# ---- build: compile the NestJS project ----
+FROM deps AS build
+COPY apps/serve-api apps/serve-api
+RUN pnpm --filter serve-api build
+
+# ---- prod-deps: reinstall production dependencies only ----
+FROM deps AS prod-deps
+RUN pnpm install --frozen-lockfile --filter serve-api... --prod
+
+# ---- runner: minimal final image ----
+FROM node:24-alpine AS runner
+ENV NODE_ENV=production
+WORKDIR /app
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=prod-deps /app/apps/serve-api/node_modules ./apps/serve-api/node_modules
+COPY --from=prod-deps /app/apps/serve-api/package.json ./apps/serve-api/package.json
+COPY --from=build /app/apps/serve-api/dist ./apps/serve-api/dist
+
+USER node
+WORKDIR /app/apps/serve-api
+EXPOSE 3000
+CMD ["node", "dist/main.js"]
